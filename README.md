@@ -1,24 +1,7 @@
-# README
+# Stela - A language learning applicatio7n
+This is the API in Ruby on Rails for Stela, a language learning app in Ruby on Rails, Python and React by [Aidan Lardner](https://www.github.com/ajlardner)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Development
+The files in the .devcontainer folder contain everything needed to get the development version of the app up and running in vscode devcontainers or Github codespaces.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Simply spin up the environment in VSCode using the devcontainer workflow, or on Github using Github codespaces, and you will be good to go to start working on the code.
