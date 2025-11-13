@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the "{}" from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+one:
+  front_text: "What is the syntax for a block comment in Ruby?"
+  back_text: "Begin with '=begin' and end with '=end'."
+  deck: one
+
+two:
+  front_text: "What is the difference between 'puts' and 'print'?"
+  back_text: "'puts' adds a newline after the output, while 'print' does not."
+  deck: one
