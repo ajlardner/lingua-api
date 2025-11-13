@@ -30,6 +30,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_08_002815) do
   end
 
   create_table "flashcards", force: :cascade do |t|
+    t.bigint "deck_id", null: false
     t.text "back_text", null: false
     t.datetime "created_at", null: false
     t.float "ease_factor", default: 2.5, null: false
@@ -39,9 +40,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_08_002815) do
     t.date "next_review_at", default: -> { "CURRENT_DATE" }, null: false
     t.integer "review_count", default: 0, null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.index ["deck_id"], name: "index_flashcards_on_deck_id"
     t.index ["next_review_at"], name: "index_flashcards_on_next_review_at"
-    t.index ["user_id"], name: "index_flashcards_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -63,6 +63,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_08_002815) do
 
   add_foreign_key "conversations", "users"
   add_foreign_key "decks", "users"
-  add_foreign_key "flashcards", "users"
+  add_foreign_key "flashcards", "decks"
   add_foreign_key "messages", "conversations"
 end

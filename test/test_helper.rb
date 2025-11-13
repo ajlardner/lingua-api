@@ -7,7 +7,10 @@ module ActiveSupport
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
 
-    # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
+    # Add Factory Bot methods
+    include FactoryBot::Syntax::Methods
+
+    # Load all fixtures for backwards compatibility during transition to FactoryBot
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
