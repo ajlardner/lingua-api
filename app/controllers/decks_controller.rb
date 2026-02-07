@@ -3,7 +3,7 @@ class DecksController < ApplicationController
 
   # GET /decks
   def index
-    @decks = Deck.all
+    @decks = current_user.decks
     render json: @decks
   end
 
@@ -14,9 +14,7 @@ class DecksController < ApplicationController
 
   # POST /decks
   def create
-    @deck = Deck.new(deck_params)
-    # TODO: Set user from authentication
-    # @deck.user = current_user
+    @deck = current_user.decks.build(deck_params)
 
     if @deck.save
       render json: @deck, status: :created
@@ -54,10 +52,10 @@ class DecksController < ApplicationController
   private
 
   def set_deck
-    @deck = Deck.find(params[:id])
+    @deck = current_user.decks.find(params[:id])
   end
 
   def deck_params
-    params.require(:deck).permit(:name, :user_id)
+    params.require(:deck).permit(:name)
   end
 end
