@@ -22,7 +22,7 @@ default: &default
 
 development:
   <<: *default
-  database: stela_api_development
+  database: lingua_api_development
 
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
@@ -56,7 +56,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: stela_api_test
+  database: lingua_api_test
   host: db
   username: postgres
   password: postgres
@@ -90,18 +90,18 @@ test:
 production:
   primary: &primary_production
     <<: *default
-    database: stela_api_production
-    username: stela_api
-    password: <%= ENV["STELA_API_DATABASE_PASSWORD"] %>
+    database: lingua_api_production
+    username: lingua_api
+    password: <%= ENV["lingua_api_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
-    database: stela_api_production_cache
+    database: lingua_api_production_cache
     migrations_paths: db/cache_migrate
   queue:
     <<: *primary_production
-    database: stela_api_production_queue
+    database: lingua_api_production_queue
     migrations_paths: db/queue_migrate
   cable:
     <<: *primary_production
-    database: stela_api_production_cable
+    database: lingua_api_production_cable
     migrations_paths: db/cable_migrate

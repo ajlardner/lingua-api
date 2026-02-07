@@ -1,5 +1,14 @@
-# Stela - A language learning applicatio7n
-This is the API in Ruby on Rails for Stela, a language learning app in Ruby on Rails, Python and React by [Aidan Lardner](https://www.github.com/ajlardner)
+# Lingua - Language Learning API
+
+Language learning app with LLM-powered conversations and SM-2 spaced repetition flashcards.
+
+Built with Ruby on Rails by [Aidan Lardner](https://www.github.com/ajlardner)
+
+## Features
+- JWT authentication
+- Flashcard decks with SM-2 spaced repetition algorithm
+- LLM-powered conversation practice
+- Vocabulary extraction from conversations
 
 ## Development
 The files in the .devcontainer folder contain everything needed to get the development version of the app up and running in vscode devcontainers or Github codespaces.
