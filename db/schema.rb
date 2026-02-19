@@ -10,14 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_08_002815) do
+ActiveRecord::Schema[8.1].define(version: 2026_02_19_025807) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "conversations", force: :cascade do |t|
     t.datetime "created_at", null: false
+    t.bigint "deck_id"
+    t.string "title"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
+    t.index ["deck_id"], name: "index_conversations_on_deck_id"
     t.index ["user_id"], name: "index_conversations_on_user_id"
   end
 
@@ -30,9 +33,9 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_08_002815) do
   end
 
   create_table "flashcards", force: :cascade do |t|
-    t.bigint "deck_id", null: false
     t.text "back_text", null: false
     t.datetime "created_at", null: false
+    t.bigint "deck_id", null: false
     t.float "ease_factor", default: 2.5, null: false
     t.text "front_text", null: false
     t.integer "interval", default: 0, null: false
@@ -61,6 +64,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_08_002815) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "conversations", "decks"
   add_foreign_key "conversations", "users"
   add_foreign_key "decks", "users"
   add_foreign_key "flashcards", "decks"

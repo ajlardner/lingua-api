@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   post "auth/register", to: "authentication#register"
   get "auth/me", to: "authentication#me"
 
+  # Conversations API
+  resources :conversations, only: [ :index, :show, :create, :destroy ] do
+    resources :messages, only: [ :create ]
+  end
+
   # Flashcard API
   resources :decks do
     member do

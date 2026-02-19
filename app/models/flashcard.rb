@@ -6,6 +6,11 @@ class Flashcard < ApplicationRecord
   validates :ease_factor, numericality: { greater_than_or_equal_to: 1.3 }
   validates :interval, :review_count, numericality: { greater_than_or_equal_to: 0 }
 
+  # Scope for cards due for review
+  scope :due, -> { where("next_review_at <= ?", Date.current) }
+  scope :due_today, -> { where(next_review_at: Date.current) }
+  scope :overdue, -> { where("next_review_at < ?", Date.current) }
+
   # SM-2 algorithm implementation
   # quality: 0-5 rating (0-2 = fail, 3-5 = pass)
   # 0 = complete blackout
@@ -30,7 +35,6 @@ class Flashcard < ApplicationRecord
       self.next_review_at = Date.current + interval.days
     end
 
-    # Update ease factor (always, even on failure)
     self.ease_factor = calculate_new_ease_factor(quality)
 
     save!
@@ -52,21 +56,16 @@ class Flashcard < ApplicationRecord
     (next_review_at - Date.current).to_i
   end
 
-  # Scope for cards due for review
-  scope :due, -> { where("next_review_at <= ?", Date.current) }
-  scope :due_today, -> { where(next_review_at: Date.current) }
-  scope :overdue, -> { where("next_review_at < ?", Date.current) }
-
   private
 
   def calculate_next_interval
     case review_count
     when 1
-      1 # First successful review: 1 day
+      1 # 1 day for first successful review
     when 2
-      6 # Second successful review: 6 days
+      6 # 6 days for second successful review
     else
-      # Subsequent reviews: previous interval * ease factor
+      # otherwise use the ease factor
       (interval * ease_factor).round
     end
   end

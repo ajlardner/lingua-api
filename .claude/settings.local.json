@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(bin/rails generate:*)",
+      "Bash(bundle install:*)",
+      "Bash(npm install:*)",
+      "Bash(docker port:*)",
+      "Bash(docker compose:*)",
+      "Bash(docker run:*)",
+      "Bash(DATABASE_URL=\"postgres://postgres:postgres@localhost:5432/stela_api_development\" bin/rails db:create:*)",
+      "Bash(npm run build:*)",
+      "Bash(DATABASE_URL=\"postgres://postgres:postgres@localhost:5432/stela_api_test\" bin/rails db:create:*)",
+      "Bash(DATABASE_URL=\"postgres://postgres:postgres@localhost:5432/stela_api_test\" bin/rails test:*)"
+    ]
+  }
+}

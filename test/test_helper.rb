@@ -5,13 +5,11 @@ require "rails/test_help"
 module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers
-    parallelize(workers: :number_of_processors)
+    # Use threads on Windows (fork not supported), limit workers to avoid exhausting DB pool
+    parallelize(workers: Gem.win_platform? ? 1 : :number_of_processors, with: :threads)
 
     # Add Factory Bot methods
     include FactoryBot::Syntax::Methods
-
-    # Load all fixtures for backwards compatibility during transition to FactoryBot
-    fixtures :all
 
     # Add more helper methods to be used by all tests here...
   end

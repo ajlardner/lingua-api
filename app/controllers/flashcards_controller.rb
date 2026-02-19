@@ -66,7 +66,7 @@ class FlashcardsController < ApplicationController
   private
 
   def set_deck
-    @deck = Deck.find(params[:deck_id])
+    @deck = current_user.decks.find(params[:deck_id])
   end
 
   def set_flashcard
